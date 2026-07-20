@@ -1,0 +1,54 @@
+/* Isso é um comentário no CSS */
+
+/* Estilo da página inteira */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Muda a fonte */
+    background-color: #f0f2f5; /* Uma cor de fundo cinza bem clarinha */
+    text-align: center; /* Centraliza tudo na tela */
+    color: #333; /* Cor do texto (um cinza bem escuro, quase preto) */
+}
+
+/* Deixando o título com uma cor de gramado */
+h1 {
+    color: #2e8b57; 
+}
+
+/* Criando o "Card" do jogo */
+.match_card {
+    background-color: white;
+    padding: 20px; /* Espaço interno da caixa */
+    border-radius: 12px; /* Arredonda as pontas da caixa */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Cria uma sombra leve */
+    display: inline-block; /* Faz a caixa ficar apenas do tamanho do conteúdo */
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* Estilizando as caixinhas de digitar o gol */
+input {
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    font-size: 24px; /* Deixa o número grande */
+    border: 2px solid #ccc; /* Borda cinza */
+    border-radius: 8px; /* Pontas arredondadas */
+    margin: 0 10px; /* Dá um espaço entre a caixinha e os nomes dos times */
+}
+
+/* Estilizando o botão */
+button {
+    background-color: #2e8b57; /* Verde */
+    color: white; /* Texto branco */
+    border: none; /* Tira a borda feia padrão */
+    padding: 12px 24px; /* Deixa o botão "gordinho" */
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer; /* Muda a setinha do mouse para a mãozinha de clicar */
+    margin-top: 20px;
+}
+
+/* Efeito quando o mouse passa por cima do botão */
+button:hover {
+    background-color: #1e5f3b; /* Fica um verde mais escuro */
+}
