@@ -14,6 +14,31 @@ h1 {
 }
 
 /* Criando o "Card" do jogo */
+
+.jogo-encerrado {
+    opacity: 0.5; /* Deixa meio transparente */
+    filter: grayscale(100%); /* Deixa preto e branco */
+    pointer-events: none; /* Impede qualquer clique do mouse! */
+}
+
+/* Organiza os botões e o título na mesma linha */
+.navegacao-datas {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #f3f3f3;
+    border-radius: 8px;
+}
+
+/* O efeito de "borrão" para jogos finalizados */
+.jogo-encerrado {
+    opacity: 0.5; /* Deixa o cartão meio transparente */
+    filter: grayscale(100%); /* Tira a cor (preto e branco) */
+    pointer-events: none; /* Bloqueia TOTALMENTE os cliques do mouse */
+}
+
 .match_card {
     background-color: white;
     padding: 20px; /* Espaço interno da caixa */
