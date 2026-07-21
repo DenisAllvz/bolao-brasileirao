@@ -1,5 +1,7 @@
 import { fetchMatches } from './api.js';
 
+const URL_SERVIDOR = 'https://bolao-brasileirao-3row.onrender.com';
+
 let todosOsJogos = [];
 let datasDisponiveis = [];
 let indiceDataAtual = 0;
@@ -22,7 +24,7 @@ btnEntrar.addEventListener('click', async () => {
     if (!usuarioDigitado || !senhaDigitada) return alert("Preencha usuário e senha!");
 
     try {
-        const resposta = await fetch('http://localhost:3000/login', {
+        const resposta = await fetch(`${URL_SERVIDOR}/login`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ usuario: usuarioDigitado, senha: senhaDigitada })
@@ -143,7 +145,7 @@ btnSalvar.addEventListener('click', async () => {
     if (meusPalpites.length === 0) return alert("Você não preencheu nenhum palpite válido!");
 
     try {
-        const resposta = await fetch('http://localhost:3000/salvar-palpite', {
+        const resposta = await fetch(`${URL_SERVIDOR}/salvar-palpite`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ usuario: usuarioLogado, dataAposta: new Date().toISOString(), palpites: meusPalpites })

@@ -1,5 +1,7 @@
+const URL_SERVIDOR = 'https://bolao-brasileirao-3row.onrender.com';
+
 export async function fetchMatches() {
-    const url = 'http://localhost:3000/jogos'; 
+    const url = `${URL_SERVIDOR}/jogos`; 
 
     try {
         const resposta = await fetch(url);
