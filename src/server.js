@@ -11,6 +11,54 @@ const { initializeApp, cert } = require('firebase-admin/app');
 const { getFirestore } = require('firebase-admin/firestore');
 
 // ... (sua trava de segurança do .env continua igual aqui) ...
+
+function calcularPontos(palpiteHome, palpiteAway, realHome, realAway) {
+    const diffPalpite = palpiteHome - palpiteAway;
+    const diffReal = realHome - realAway;
+    
+    const acertouPlacarExato = (palpiteHome === realHome && palpiteAway === realAway);
+    
+    // Identifica se acertou quem venceu ou se acertou o empate
+    const acertouVencedorOuEmpate = (
+        (palpiteHome > palpiteAway && realHome > realAway) ||
+        (palpiteHome < palpiteAway && realHome < realAway) ||
+        (palpiteHome === palpiteAway && realHome === realAway)
+    );
+    
+    const acertouDiferenca = (diffPalpite === diffReal);
+
+    // 1. Acertou o placar exato = 3 pontos
+    if (acertouPlacarExato) return 3;
+    
+    // 2. Acertou a diferença de gols + vencedor/empate (mas errou o placar exato) = 2 pontos
+    if (acertouDiferenca && acertouVencedorOuEmpate) return 2;
+    
+    // 3. Acertou só o vencedor/empate (sem acertar a diferença exata) = 1 ponto
+    if (acertouVencedorOuEmpate) return 1;
+    
+    // Errou tudo = 0 pontos
+    return 0;
+}
+
+app.post('/mudar-senha', async (req, res) => {
+    const { usuario, senhaAtual, novaSenha } = req.body;
+    try {
+        const userRef = db.collection('usuarios').doc(usuario);
+        const doc = await userRef.get();
+
+        if (!doc.exists) return res.json({ sucesso: false, mensagem: "Usuário não encontrado." });
+
+        if (doc.data().senha !== senhaAtual) {
+            return res.json({ sucesso: false, mensagem: "Senha atual incorreta." });
+        }
+
+        await userRef.update({ senha: novaSenha });
+        res.json({ sucesso: false, sucesso: true, mensagem: "Senha alterada com sucesso!" }); // Note: adjust property as needed
+    } catch (erro) {
+        res.status(500).json({ sucesso: false, mensagem: "Erro ao atualizar senha." });
+    }
+});
+
 let credenciais;
 try {
     if (!process.env.FIREBASE_CREDENTIALS) {

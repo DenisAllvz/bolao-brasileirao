@@ -5,44 +5,38 @@ const URL_SERVIDOR = 'https://bolao-brasileirao-3row.onrender.com';
 let todosOsJogos = [];
 let datasDisponiveis = [];
 let indiceDataAtual = 0;
-let usuarioLogado = ""; 
 
-const telaLogin = document.getElementById('tela-login');
-const telaBolao = document.getElementById('tela-bolao');
-const btnEntrar = document.getElementById('btn-entrar');
+// --- AJUSTE DE SESSÃO (PÁGINAS SEPARADAS) ---
+let usuarioLogado = localStorage.getItem('usuarioLogado');
+
+// Se o usuário não estiver logado, redireciona imediatamente para a tela de login
+if (!usuarioLogado) {
+    window.location.href = 'login.html';
+} else {
+    // Exibe o nome do usuário na navbar se o elemento existir
+    const spanUsuario = document.getElementById('nome-usuario-topo');
+    if (spanUsuario) {
+        spanUsuario.innerText = `👤 ${usuarioLogado.toUpperCase()}`;
+    }
+    // Como a página já é a do bolao.html, inicia o painel direto!
+    iniciarBolao();
+}
+
+// Elementos da Tela do Bolão
 const containerJogos = document.getElementById('lista-jogos');
 const textoData = document.getElementById('data-atual');
 const btnAnterior = document.getElementById('btn-anterior');
 const btnProximo = document.getElementById('btn-proximo');
 const btnSalvar = document.getElementById('btn-salvar');
+const btnSair = document.getElementById('btn-sair');
 
-// Lógica de Login
-btnEntrar.addEventListener('click', async () => {
-    const usuarioDigitado = document.getElementById('login-usuario').value.toLowerCase().trim();
-    const senhaDigitada = document.getElementById('login-senha').value.trim();
-
-    if (!usuarioDigitado || !senhaDigitada) return alert("Preencha usuário e senha!");
-
-    try {
-        const resposta = await fetch(`${URL_SERVIDOR}/login`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ usuario: usuarioDigitado, senha: senhaDigitada })
-        });
-        const resultado = await resposta.json();
-
-        if (resultado.sucesso) {
-            usuarioLogado = usuarioDigitado; 
-            telaLogin.style.display = 'none'; 
-            telaBolao.style.display = 'block'; 
-            iniciarBolao(); 
-        } else {
-            alert(resultado.mensagem); 
-        }
-    } catch (erro) {
-        alert("Erro ao conectar com o servidor.");
-    }
-});
+// Lógica de Logout
+if (btnSair) {
+    btnSair.addEventListener('click', () => {
+        localStorage.removeItem('usuarioLogado'); // Limpa a sessão
+        window.location.href = 'login.html';     // Volta para a página de login
+    });
+}
 
 // Lógica de montar a tela
 async function iniciarBolao() {
@@ -115,7 +109,7 @@ function desenharTela() {
     btnProximo.disabled = (indiceDataAtual === datasDisponiveis.length - 1);
 }
 
-// Lógica dos Botões
+// Lógica dos Botões de Navegação de Datas
 btnAnterior.addEventListener('click', () => {
     if (indiceDataAtual > 0) { indiceDataAtual--; desenharTela(); }
 });
@@ -124,6 +118,7 @@ btnProximo.addEventListener('click', () => {
     if (indiceDataAtual < datasDisponiveis.length - 1) { indiceDataAtual++; desenharTela(); }
 });
 
+// Lógica de Salvar Palpites
 btnSalvar.addEventListener('click', async () => {
     const dataFoco = datasDisponiveis[indiceDataAtual];
     const jogosDoDia = todosOsJogos.filter(jogo => jogo.date === dataFoco);
