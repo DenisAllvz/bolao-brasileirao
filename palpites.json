@@ -1,0 +1,28 @@
+[
+  {
+    "usuario": "denilson",
+    "dataAposta": "2026-07-21T13:06:20.245Z",
+    "palpites": [
+      {
+        "matchId": 346538,
+        "homeTeam": "Corinthians",
+        "awayTeam": "Remo",
+        "placarHome": 3,
+        "placarAway": -2
+      }
+    ]
+  },
+  {
+    "usuario": "denilson",
+    "dataAposta": "2026-07-21T13:13:12.200Z",
+    "palpites": [
+      {
+        "matchId": 346542,
+        "homeTeam": "Coritiba",
+        "awayTeam": "Palmeiras",
+        "placarHome": 33,
+        "placarAway": 1
+      }
+    ]
+  }
+]

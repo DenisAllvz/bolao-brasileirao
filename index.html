@@ -2,36 +2,44 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Bolão da Galera</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bolão VIP</title>
+    
+    <!-- ESSA É A LINHA MÁGICA QUE PUXA O VISUAL (CSS) -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <h1>🏆 Bolão do Brasileirão</h1>
-    <p>Bem-vindo ao nosso bolão. Deixe seus palpites abaixo!</p>
-
-    <div class="navegacao-datas">
-    <button id="btn-anterior">◀ Anterior</button>
-    <h2 id="data-atual">Carregando jogos...</h2>
-    <button id="btn-proximo">Próximo ▶</button>
+    <!-- 1. TELA DE LOGIN -->
+    <div id="tela-login" class="container-login">
+        <h2>🏆 Bolão VIP</h2>
+        <input type="text" id="login-usuario" placeholder="Digite seu usuário">
+        <input type="password" id="login-senha" placeholder="Sua senha">
+        <button id="btn-entrar">Entrar no Bolão</button>
     </div>
 
-<!-- Onde os cartões dos times vão aparecer magicamente -->
-<div id="lista-jogos"></div>
+    <!-- 2. TELA DO BOLÃO -->
+    <div id="tela-bolao" class="container-bolao" style="display: none;">
+        
+        <!-- Navegação -->
+        <div class="navegacao-datas">
+            <button id="btn-anterior">◀</button>
+            <h2 id="data-atual">Carregando...</h2>
+            <button id="btn-proximo">▶</button>
+        </div>
 
-    <hr>
+        <!-- Jogos -->
+        <div id="lista-jogos"></div>
 
-    <!-- Match structure -->
-    <h2>Rodada 1</h2>
+        <!-- Botão Salvar -->
+        <div class="area-salvar">
+            <button id="btn-salvar">💾 Salvar Meus Palpites</button>
+        </div>
 
-    <!-- A caixa onde os jogos vão nascer -->
-    <div id="matches-container"></div>
+    </div>
 
-    <br>
-    
-   <button id="save-button" class="save-btn">Salvar Palpites</button>
-
-    <!-- Importamos apenas o arquivo principal como um módulo -->
+    <!-- Conectando o motor JavaScript -->
     <script type="module" src="main.js"></script>
+
 </body>
 </html>
