@@ -1,42 +1,27 @@
-const API_KEY = 'e0c7229891msh3be0e93a7b40824p179a29jsne1d1e1dcf7c4'; 
-const API_HOST = 'free-api-live-football-data.p.rapidapi.com';
-
 export async function fetchMatches() {
-    // COLE A URL DO CODE SNIPPET AQUI ABAIXO:
-    const url = 'https://free-api-live-football-data.p.rapidapi.com/football-get-all-matches-by-league?leagueid=268'; 
-
-    const opcoes = {
-        method: 'GET',
-        headers: {
-            'x-rapidapi-key': API_KEY,
-            'x-rapidapi-host': API_HOST
-        }
-    };
+    // Agora o seu site pede os dados direto para o seu próprio servidor Node.js!
+    const url = 'http://localhost:3000/jogos'; 
 
     try {
-        console.log("Buscando jogos reais na API...");
-        const resposta = await fetch(url, opcoes);
-        const dados = await resposta.json();
+        console.log("Frontend pedindo dados para o Backend local...");
         
-        // Verifica se a API mandou jogos de verdade (se o tamanho da lista é maior que zero)
-        if (dados.response && dados.response.matches && dados.response.matches.length > 0) {
-            console.log("A API mandou jogos reais!", dados);
-            // Aqui no futuro vamos adaptar os nomes das variáveis da API para as nossas
-            return dados.response.matches; 
-        } else {
-            console.log("A API mandou 0 jogos. Carregando dados de teste do Bolão...");
-            // PLANO B: Nossa lista de teste para continuarmos construindo o site!
-            return [
-                { homeTeam: "Flamengo", awayTeam: "Palmeiras", matchId: 101 },
-                { homeTeam: "Vasco", awayTeam: "Botafogo", matchId: 102 },
-                { homeTeam: "São Paulo", awayTeam: "Corinthians", matchId: 103 },
-                { homeTeam: "Grêmio", awayTeam: "Internacional", matchId: 104 },
-                { homeTeam: "Cruzeiro", awayTeam: "Atlético-MG", matchId: 105 }
-            ];
-        }
+        const resposta = await fetch(url);
+        const partidas = await resposta.json();
+        
+        // Traduzindo a estrutura oficial da biblioteca para os nossos cartões HTML
+        const jogosFormatados = partidas.map(jogo => {
+            return {
+                // A biblioteca entrega os nomes dentro de homeTeam.name e awayTeam.name[cite: 1]
+                homeTeam: jogo.homeTeam.name, //[cite: 1]
+                awayTeam: jogo.awayTeam.name, //[cite: 1]
+                matchId: jogo.id              //[cite: 1]
+            };
+        });
+        
+        return jogosFormatados;
 
     } catch (erro) {
-        console.error("Ops! Erro na conexão:", erro);
+        console.error("Frontend não conseguiu falar com o Backend:", erro);
         return []; 
     }
 }

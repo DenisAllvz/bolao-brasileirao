@@ -1,0 +1,26 @@
+{
+  "name": "bolao_brasileirao",
+  "version": "1.0.0",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DenisAllvz/bolao-brasileirao.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DenisAllvz/bolao-brasileirao/issues"
+  },
+  "homepage": "https://github.com/DenisAllvz/bolao-brasileirao#readme",
+  "description": "",
+  "dependencies": {
+    "campeonato-brasileiro": "^1.1.2",
+    "campeonato-brasileiro-api": "^2.0.1",
+    "cors": "^2.8.6",
+    "express": "^5.2.1"
+  }
+}
