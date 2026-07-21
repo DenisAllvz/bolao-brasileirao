@@ -5,6 +5,9 @@ export async function fetchMatches() {
         const resposta = await fetch(url);
         const partidas = await resposta.json();
         
+        // COMANDO DE ESPIONAGEM: Pode apagar ou deixar aqui se quiser investigar depois
+        // console.log("DADOS DO JOGO:", partidas[0]); 
+        
         if (!Array.isArray(partidas)) {
             console.error("O servidor não enviou uma lista válida:", partidas);
             return [];
@@ -14,8 +17,11 @@ export async function fetchMatches() {
             return {
                 homeTeam: jogo.homeTeam.name,
                 awayTeam: jogo.awayTeam.name,
-                homeLogo: jogo.homeTeam.logo || jogo.homeTeam.shield || jogo.homeTeam.crest || '',
-                awayLogo: jogo.awayTeam.logo || jogo.awayTeam.shield || jogo.awayTeam.crest || '',
+                
+                // MÁGICA ACONTECENDO AQUI: Agora usamos a palavra certa (badge)
+                homeLogo: jogo.homeTeam.badge || '',
+                awayLogo: jogo.awayTeam.badge || '',
+                
                 matchId: jogo.id,
                 date: jogo.date,
                 status: jogo.status
