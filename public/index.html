@@ -3,88 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bolão do Brasileirão</title>
+    <title>Login - Bolão do Brasileirão</title>
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-dark text-light">
+<body class="bg-dark text-light vh-100 d-flex justify-content-center align-items-center">
 
-    <!-- ================= TELA DE LOGIN ================= -->
-    <div id="tela-login" class="container d-flex justify-content-center align-items-center vh-100">
-        <div class="card bg-secondary text-light p-4 shadow-lg border-0 rounded-4" style="width: 100%; max-width: 400px;">
-            <div class="text-center mb-4">
-                <h2 class="fw-bold text-warning">🏆 Bolão VIP</h2>
-                <p class="text-light small">Faça login para dar seus palpites</p>
-            </div>
-            <div class="mb-3">
-                <label for="login-usuario" class="form-label fw-semibold">Usuário</label>
-                <input type="text" id="login-usuario" class="form-control bg-dark text-light border-0 py-2" placeholder="Digite seu usuário">
-            </div>
-            <div class="mb-4">
-                <label for="login-senha" class="form-label fw-semibold">Senha</label>
-                <input type="password" id="login-senha" class="form-control bg-dark text-light border-0 py-2" placeholder="Sua senha">
-            </div>
-            <button id="btn-entrar" class="btn btn-success w-100 py-2 fw-bold mb-3 shadow-sm">Entrar no Bolão</button>
-            <button class="btn btn-outline-light w-100 btn-sm border-0 text-muted" data-bs-toggle="modal" data-bs-target="#modalRegras">📖 Ver Regulamento e Regras</button>
+    <div class="card bg-secondary text-light p-4 shadow-lg border-0 rounded-4" style="width: 100%; max-width: 400px;">
+        <div class="text-center mb-4">
+            <h2 class="fw-bold text-warning">🏆 Bolão VIP</h2>
+            <p class="text-light small">Faça login para dar seus palpites</p>
         </div>
-    </div>
-
-    <!-- ================= TELA DO BOLÃO (PRINCIPAL) ================= -->
-    <div id="tela-bolao" class="container py-4" style="display: none;">
         
-        <!-- Navbar Superior -->
-        <header class="d-flex flex-wrap justify-content-between align-items-center mb-4 pb-3 border-bottom border-secondary gap-3">
-            <h1 class="h4 text-warning mb-0 fw-bold">🏆 Bolão do Brasileirão</h1>
-            <div class="d-flex align-items-center gap-2">
-                <button class="btn btn-outline-info btn-sm px-3" data-bs-toggle="modal" data-bs-target="#modalRegras">Regras</button>
-                <button class="btn btn-outline-warning btn-sm px-3" data-bs-toggle="modal" data-bs-target="#modalSenha">Alterar Senha</button>
-                <button id="btn-sair" class="btn btn-danger btn-sm px-3">Sair</button>
-            </div>
-        </header>
-
-        <!-- Grid Principal (Jogos à esquerda, Ranking à direita) -->
-        <div class="row g-4">
-            
-            <!-- LADO ESQUERDO: Jogos e Datas -->
-            <div class="col-lg-8">
-                <!-- Barra de Navegação de Datas -->
-                <div class="d-flex justify-content-between align-items-center bg-secondary bg-opacity-25 p-3 rounded-3 mb-3 border border-secondary border-opacity-50">
-                    <button id="btn-anterior" class="btn btn-dark btn-sm px-3">&lt; Dia Anterior</button>
-                    <span id="data-atual" class="fw-bold text-warning">Carregando data...</span>
-                    <button id="btn-proximo" class="btn btn-dark btn-sm px-3">Próximo Dia &gt;</button>
-                </div>
-
-                <!-- Lista de Partidas -->
-                <div id="lista-jogos" class="d-flex flex-column gap-3 mb-4">
-                    <!-- Cards injetados via JavaScript -->
-                </div>
-
-                <!-- Botão Salvar Palpites -->
-                <button id="btn-salvar" class="btn btn-success w-100 py-3 fw-bold shadow-sm">💾 Salvar Meus Palpites</button>
-            </div>
-
-            <!-- LADO DIREITO: Painel de Ranking Organizado -->
-            <div class="col-lg-4">
-                <div class="card bg-secondary bg-opacity-10 border border-secondary text-light shadow-sm rounded-4 h-100">
-                    <div class="card-header bg-dark text-warning fw-bold text-center py-3 border-bottom border-secondary rounded-top-4">
-                        📊 Ranking Geral
-                    </div>
-                    <div class="card-body p-0">
-                        <ul id="lista-ranking" class="list-group list-group-flush bg-transparent">
-                            <li class="list-group-item bg-transparent text-light d-flex justify-content-between align-items-center py-3 px-3 border-bottom border-secondary border-opacity-25">
-                                <span>Carregando ranking...</span>
-                                <span class="badge bg-warning text-dark fw-bold px-2 py-1">0 pts</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
+        <div class="mb-3">
+            <label for="login-usuario" class="form-label fw-semibold">Usuário</label>
+            <input type="text" id="login-usuario" class="form-control bg-dark text-light border-0 py-2" placeholder="Digite seu usuário">
         </div>
+        
+        <div class="mb-4">
+            <label for="login-senha" class="form-label fw-semibold">Senha</label>
+            <input type="password" id="login-senha" class="form-control bg-dark text-light border-0 py-2" placeholder="Sua senha">
+        </div>
+        
+        <button id="btn-entrar" class="btn btn-success w-100 py-2 fw-bold mb-3 shadow-sm">Entrar no Bolão</button>
+        <button class="btn btn-outline-light w-100 btn-sm border-0 text-muted" data-bs-toggle="modal" data-bs-target="#modalRegras">📖 Ver Regulamento e Regras</button>
+        <button class="btn btn-outline-info w-100 btn-sm border-0 text-muted" data-bs-toggle="modal" data-bs-target="#modalRegistrar">👤 Criar Nova Conta</button>
     </div>
 
-    <!-- ================= MODAL DE REGRAS ================= -->
+    <!-- MODAL DE REGRAS -->
     <div class="modal fade" id="modalRegras" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content bg-secondary text-light border-0 shadow-lg rounded-4">
@@ -95,40 +42,41 @@
                 <div class="modal-body py-4">
                     <ul class="list-unstyled d-flex flex-column gap-3 mb-0">
                         <li>🎯 <strong>3 Pontos:</strong> Acertar o placar exato do jogo.</li>
-                        <li>⚖️ <strong>2 Pontos:</strong> Acertar a diferença de gols e o vencedor (ou acertar um empate com diferença de gols correta, ex: palpite 2x2 e jogo foi 4x4).</li>
-                        <li>✅ <strong>1 Ponto:</strong> Acertar apenas quem venceu o jogo (ou que daria empate), sem acertar a diferença de gols.</li>
-                        <li>❌ <strong>0 Pontos:</strong> Errar o resultado.</li>
+                        <li>⚖️ <strong>2 Pontos:</strong> Acertar a diferença de gols e o vencedor.</li>
+                        <li>✅ <strong>1 Ponto:</strong> Acertar apenas quem venceu o jogo.</li>
+                        <li>❌ <strong>0 Pontos:</strong> Errar completamente.</li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- ================= MODAL DE ALTERAR SENHA ================= -->
-    <div class="modal fade" id="modalSenha" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content bg-secondary text-light border-0 shadow-lg rounded-4">
-                <div class="modal-header border-bottom border-dark">
-                    <h5 class="modal-title text-warning fw-bold">🔑 Alterar Senha de Acesso</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+    <!-- MODAL DE CRIAR CONTA -->
+<div class="modal fade" id="modalRegistrar" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content bg-secondary text-light border-0 shadow-lg rounded-4">
+            <div class="modal-header border-bottom border-dark">
+                <h5 class="modal-title text-info fw-bold">👤 Criar Nova Conta</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body py-4">
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">Nome de Usuário (minúsculo, sem espaço)</label>
+                    <input type="text" id="reg-usuario" class="form-control bg-dark text-light border-0 py-2">
                 </div>
-                <div class="modal-body py-4">
-                    <div class="mb-3">
-                        <label for="senha-atual" class="form-label fw-semibold">Senha Atual</label>
-                        <input type="password" id="senha-atual" class="form-control bg-dark text-light border-0 py-2" placeholder="Digite sua senha atual">
-                    </div>
-                    <div class="mb-4">
-                        <label for="senha-nova" class="form-label fw-semibold">Nova Senha</label>
-                        <input type="password" id="senha-nova" class="form-control bg-dark text-light border-0 py-2" placeholder="Digite a nova senha desejada">
-                    </div>
-                    <button id="btn-salvar-senha" class="btn btn-warning w-100 py-2 fw-bold text-dark shadow-sm">Salvar Nova Senha</button>
+                <div class="mb-4">
+                    <label class="form-label fw-semibold">Senha</label>
+                    <input type="password" id="reg-senha" class="form-control bg-dark text-light border-0 py-2">
                 </div>
+                <button id="btn-registrar" class="btn btn-info w-100 py-2 fw-bold text-dark shadow-sm">Cadastrar</button>
             </div>
         </div>
     </div>
+</div>
 
-    <!-- Bootstrap 5 JS Bundle Corrigido -->
+    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script type="module" src="./main.js"></script>
+    <!-- Script específico da tela de login -->
+    <script type="module" src="login.js"></script>
 </body>
 </html>

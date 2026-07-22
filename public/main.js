@@ -2,6 +2,8 @@ import { fetchMatches } from './api.js';
 
 const URL_SERVIDOR = 'https://bolao-brasileirao-3row.onrender.com';
 
+//const URL_SERVIDOR = 'http://localhost:3000';
+
 let todosOsJogos = [];
 let datasDisponiveis = [];
 let indiceDataAtual = 0;
@@ -11,7 +13,7 @@ let usuarioLogado = localStorage.getItem('usuarioLogado');
 
 // Se o usuário não estiver logado, redireciona imediatamente para a tela de login
 if (!usuarioLogado) {
-    window.location.href = 'login.html';
+    window.location.href = 'index.html';
 } else {
     // Exibe o nome do usuário na navbar se o elemento existir
     const spanUsuario = document.getElementById('nome-usuario-topo');
@@ -34,7 +36,7 @@ const btnSair = document.getElementById('btn-sair');
 if (btnSair) {
     btnSair.addEventListener('click', () => {
         localStorage.removeItem('usuarioLogado'); // Limpa a sessão
-        window.location.href = 'login.html';     // Volta para a página de login
+        window.location.href = 'index.html';     // Volta para a página de login
     });
 }
 
@@ -151,3 +153,34 @@ btnSalvar.addEventListener('click', async () => {
         alert("Ops! O servidor não conseguiu guardar seu palpite.");
     }
 });
+
+// Lógica de Mudar Senha
+const btnSalvarSenha = document.getElementById('btn-salvar-senha');
+if (btnSalvarSenha) {
+    btnSalvarSenha.addEventListener('click', async () => {
+        const senhaAtual = document.getElementById('senha-atual').value;
+        const senhaNova = document.getElementById('senha-nova').value;
+
+        if (!senhaAtual || !senhaNova) return alert("Preencha a senha atual e a nova senha!");
+
+        try {
+            const resposta = await fetch(`${URL_SERVIDOR}/mudar-senha`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                // O usuarioLogado já existe no topo do main.js!
+                body: JSON.stringify({ usuario: usuarioLogado, senhaAtual: senhaAtual, novaSenha: senhaNova })
+            });
+            const resultado = await resposta.json();
+            
+            alert(resultado.mensagem);
+            
+            if (resultado.sucesso) {
+                // Limpa os campos após o sucesso
+                document.getElementById('senha-atual').value = '';
+                document.getElementById('senha-nova').value = '';
+            }
+        } catch (erro) {
+            alert("Erro ao se conectar com o servidor para mudar a senha.");
+        }
+    });
+}
